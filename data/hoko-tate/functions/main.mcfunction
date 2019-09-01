@@ -1,5 +1,8 @@
+# 盾のアイテムを召喚
+execute at @e[type=minecraft:item,nbt={Item:{id:"minecraft:shield"}}] if entity @e[type=minecraft:item,nbt={Item:{id:"minecraft:wooden_sword"}},distance=..1] if block ~ ~-1 ~ minecraft:smithing_table run function hoko-tate:summon_shield_item
+
 # 盾の召喚
-execute at @p as @p at @e[type=item,nbt={Item:{id:"minecraft:shield"}},distance=..10,limit=1] run function hoko-tate:summon_shield
+execute at @p as @p at @e[type=item,nbt={Item:{id:"minecraft:shield",tag:{BlockEntityTag:{Patterns:[{Pattern:"ts",Color:0},{Pattern:"bs",Color:0},{Pattern:"bo",Color:14},{Pattern:"mr",Color:11},{Pattern:"mc",Color:0}]}}}},distance=..10,limit=1] run function hoko-tate:summon_shield
 
 # 盾の角度調整
 ## 縦
