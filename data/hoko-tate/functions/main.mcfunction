@@ -16,17 +16,22 @@ execute at @e[tag=sh,sort=nearest,limit=1] run tp @e[tag=sh,sort=nearest,limit=1
 
 # 盾の反射
 ## 右
-execute at @e[tag=sh,sort=nearest,limit=1] unless block ^1.1 ^ ^1 air at @p run playsound minecraft:item.shield.break player @p
+execute at @e[tag=sh,sort=nearest,limit=1] unless block ^1.1 ^ ^1 air at @p run playsound minecraft:item.shield.break player @p ~ ~ ~ 0.5
 execute at @e[tag=sh,sort=nearest,limit=1] unless block ^1.1 ^ ^1 air run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~90 ~
 ## 左
-execute at @e[tag=sh,sort=nearest,limit=1] unless block ^-1.1 ^ ^1 air at @p run playsound minecraft:item.shield.break player @p
+execute at @e[tag=sh,sort=nearest,limit=1] unless block ^-1.1 ^ ^1 air at @p run playsound minecraft:item.shield.break player @p ~ ~ ~ 0.5
 execute at @e[tag=sh,sort=nearest,limit=1] unless block ^-1.1 ^ ^1 air run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~-90 ~
 ## 上
-execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^-0.1 ^1 air at @p run playsound minecraft:item.shield.break player @p
+execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^-0.1 ^1 air at @p run playsound minecraft:item.shield.break player @p ~ ~ ~ 0.5
 execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^-0.1 ^1 air run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~-90
 ## 下
-execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^0.1 ^1 air at @p run playsound minecraft:item.shield.break player @p
+execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^0.1 ^1 air at @p run playsound minecraft:item.shield.break player @p ~ ~ ~ 0.5
 execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^0.1 ^1 air run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~90
+
+# 盾の攻撃性能
+execute at @e[tag=sh,sort=nearest,limit=1] if entity @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] at @p run playsound minecraft:entity.player.attack.knockback player @p ~ ~ ~ 2
+execute at @e[tag=sh,sort=nearest,limit=1] run effect give @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] minecraft:instant_damage 1 0
+execute at @e[tag=sh,sort=nearest,limit=1] run tp @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] ^ ^3 ^
 
 # 盾の削除処理
 execute at @p if entity @e[tag=sh,sort=nearest,limit=1,distance=40..] run function hoko-tate:kill_shield
