@@ -25,11 +25,10 @@ execute at @e[tag=sh,sort=nearest,limit=1] unless block ^1.1 ^ ^1 air run tp @e[
 execute at @e[tag=sh,sort=nearest,limit=1] unless block ^-1.1 ^ ^1 air at @p run playsound minecraft:item.shield.break player @p ~ ~ ~ 0.5
 execute at @e[tag=sh,sort=nearest,limit=1] unless block ^-1.1 ^ ^1 air run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~-90 ~
 ## 上
-execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^-0.1 ^1 air at @p run playsound minecraft:item.shield.break player @p ~ ~ ~ 0.5
-execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^-0.1 ^1 air run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~-90
+execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^0.5 ^1 air unless block ^ ^0.5 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~-90
 ## 下
-execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^0.1 ^1 air at @p run playsound minecraft:item.shield.break player @p ~ ~ ~ 0.5
-execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^0.1 ^1 air run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~90
+execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^0.8 ^1 air at @p run playsound minecraft:item.shield.break player @p ~ ~ ~ 0.5
+execute at @e[tag=sh,sort=nearest,limit=1] unless block ^ ^0.8 ^1 air run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~90
 
 # 盾の攻撃性能
 execute at @e[tag=sh,sort=nearest,limit=1] if entity @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] at @p run playsound minecraft:entity.player.attack.knockback player @p ~ ~ ~ 2
