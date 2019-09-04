@@ -4,9 +4,6 @@ playsound minecraft:entity.ender_dragon.flap player @a[sort=nearest,limit=1]
 
 execute unless entity @e[tag=sh] run scoreboard objectives remove ht-time
 execute unless entity @e[tag=sh] run scoreboard objectives remove ht-angle
-execute unless entity @e[tag=sh] run scoreboard objectives remove ht-90
-execute unless entity @e[tag=sh] run scoreboard objectives remove ht-rotation-x
-execute unless entity @e[tag=sh] run scoreboard objectives remove ht-rotation-y
 execute unless entity @e[tag=sh] run scoreboard objectives remove ht-id-r
 execute unless entity @e[tag=sh] run scoreboard objectives remove ht-id-p
 execute unless entity @e[tag=sh] run scoreboard objectives remove ht-owner-r

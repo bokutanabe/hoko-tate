@@ -7,29 +7,27 @@ execute at @e[type=item,nbt={Item:{id:"minecraft:shield",tag:{BlockEntityTag:{Pa
 # 盾の角度調整
 ## 縦
 execute at @e[tag=sh] store result score @e[tag=sh,sort=nearest,limit=1] ht-angle run data get entity @e[tag=sh,sort=nearest,limit=1] Rotation[1]
-execute at @e[tag=sh] run scoreboard players operation @e[tag=sh,sort=nearest,limit=1] ht-angle += @e[tag=sh,sort=nearest,limit=1] ht-90
+execute at @e[tag=sh] run scoreboard players add @e[tag=sh,sort=nearest,limit=1] ht-angle 90
 execute at @e[tag=sh] store result entity @e[tag=sh,sort=nearest,limit=1] Pose.Head[0] float 1 run scoreboard players get @e[tag=sh,sort=nearest,limit=1] ht-angle
 ## 横
-execute if entity @e[tag=sh,scores={ht-time=0..3}] run scoreboard players add @e[tag=sh,sort=nearest,limit=1] ht-rotation-x 1
-execute if entity @e[tag=sh,scores={ht-time=4..7}] run scoreboard players remove @e[tag=sh,sort=nearest,limit=1] ht-rotation-x 1
-execute if entity @e[tag=sh,scores={ht-time=0..7}] store result entity @e[tag=sh,sort=nearest,limit=1] Rotation[0] float 1 run scoreboard players get @e[tag=sh,sort=nearest,limit=1] ht-rotation-x
+execute at @e[tag=sh,scores={ht-time=0..3}] run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~1 ~
+execute at @e[tag=sh,scores={ht-time=4..7}] run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~-1 ~
 scoreboard players add @e[tag=sh,scores={ht-time=0..7}] ht-time 1
-scoreboard players set @e[tag=sh,scores={ht-time=8..}] ht-time 0
 
 # 盾の直進
 execute at @e[tag=sh] run tp @e[tag=sh,sort=nearest,limit=1] ^ ^ ^1
 
 # 盾の反射
 ## 右
-execute at @e[tag=sh] unless block ^1.1 ^ ^1 air unless block ^1.1 ^ ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:item.shield.break player @a[sort=nearest,limit=1] ~ ~ ~ 0.5
-execute at @e[tag=sh] unless block ^1.1 ^ ^1 air unless block ^1.1 ^ ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~90 ~
+execute at @e[tag=sh] unless block ^1.1 ^1 ^1 air unless block ^1.1 ^1 ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:entity.llama.spit player @a[sort=nearest,limit=1] ~ ~ ~ 0.5
+execute at @e[tag=sh] unless block ^1.1 ^1 ^1 air unless block ^1.1 ^1 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~90 ~
 ## 左
-execute at @e[tag=sh] unless block ^-1.1 ^ ^1 air unless block ^-1.1 ^ ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:item.shield.break player @a[sort=nearest,limit=1] ~ ~ ~ 0.5
-execute at @e[tag=sh] unless block ^-1.1 ^ ^1 air unless block ^-1.1 ^ ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~-90 ~
+execute at @e[tag=sh] unless block ^-1.1 ^1 ^1 air unless block ^-1.1 ^1 ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:entity.llama.spit player @a[sort=nearest,limit=1] ~ ~ ~ 0.5
+execute at @e[tag=sh] unless block ^-1.1 ^1 ^1 air unless block ^-1.1 ^1 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~-90 ~
 ## 上
-execute at @e[tag=sh] unless block ^ ^0.5 ^1 air unless block ^ ^0.5 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~-90
+execute at @e[tag=sh] unless block ^ ^1.5 ^1 air unless block ^ ^1.5 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~-90
 ## 下
-execute at @e[tag=sh] unless block ^ ^0.8 ^1 air unless block ^0.8 ^ ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~90
+execute at @e[tag=sh] unless block ^ ^1.8 ^1 air unless block ^ ^1.8 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~90
 
 # 盾の攻撃性能
 execute at @e[tag=sh] if entity @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:entity.player.attack.knockback player @a[sort=nearest,limit=1] ~ ~ ~ 2
