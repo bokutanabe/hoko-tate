@@ -18,21 +18,23 @@ scoreboard players add @e[tag=sh,scores={ht-time=0..7}] ht-time 1
 execute at @e[tag=sh] run tp @e[tag=sh,sort=nearest,limit=1] ^ ^ ^1
 
 # 盾の反射
-## 右
-execute at @e[tag=sh] unless block ^1.1 ^1 ^1 air unless block ^1.1 ^1 ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:entity.llama.spit player @a[sort=nearest,limit=1] ~ ~ ~ 0.5
-execute at @e[tag=sh] unless block ^1.1 ^1 ^1 air unless block ^1.1 ^1 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~90 ~
-## 左
-execute at @e[tag=sh] unless block ^-1.1 ^1 ^1 air unless block ^-1.1 ^1 ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:entity.llama.spit player @a[sort=nearest,limit=1] ~ ~ ~ 0.5
-execute at @e[tag=sh] unless block ^-1.1 ^1 ^1 air unless block ^-1.1 ^1 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~-90 ~
-## 上
-execute at @e[tag=sh] unless block ^ ^1.5 ^1 air unless block ^ ^1.5 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~-90
-## 下
-execute at @e[tag=sh] unless block ^ ^1.8 ^1 air unless block ^ ^1.8 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~90
+## 左側
+execute at @e[tag=sh] unless block ^0.7 ^1 ^1 air unless block ^0.7 ^1 ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:item.shield.break player @a[sort=nearest,limit=1] ~ ~ ~ 0.2
+execute at @e[tag=sh] unless block ^0.7 ^1 ^1 air unless block ^0.7 ^1 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~90 ~
+## 右側
+execute at @e[tag=sh] unless block ^-0.1 ^1 ^1 air unless block ^-0.1 ^1 ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:item.shield.break player @a[sort=nearest,limit=1] ~ ~ ~ 0.2
+execute at @e[tag=sh] unless block ^-0.1 ^1 ^1 air unless block ^-0.1 ^1 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~-90 ~
+## 下側
+execute at @e[tag=sh] unless block ^0.3 ^0.5 ^1 air unless block ^0.3 ^0.5 ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:item.shield.break player @a[sort=nearest,limit=1] ~ ~ ~ 0.2
+execute at @e[tag=sh] unless block ^0.3 ^0.5 ^1 air unless block ^0.3 ^0.5 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~-90
+## 上側
+execute at @e[tag=sh] unless block ^0.3 ^1.5 ^1 air unless block ^0.3 ^1.5 ^1 grass at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:item.shield.break player @a[sort=nearest,limit=1] ~ ~ ~ 0.2
+execute at @e[tag=sh] unless block ^0.3 ^1.5 ^1 air unless block ^0.3 ^1.5 ^1 grass run tp @e[tag=sh,sort=nearest,limit=1] ~ ~ ~ ~ ~90
 
 # 盾の攻撃性能
 execute at @e[tag=sh] if entity @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p run playsound minecraft:entity.player.attack.knockback player @a[sort=nearest,limit=1] ~ ~ ~ 2
-execute at @e[tag=sh] run effect give @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] minecraft:instant_damage 1 0
-execute at @e[tag=sh] run tp @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] ^ ^3 ^
+execute at @e[tag=sh] run effect give @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] minecraft:instant_damage 1 1
+execute at @e[tag=sh] run tp @e[type=!minecraft:player,type=!minecraft:item,type=!minecraft:armor_stand,distance=..2] ^ ^2 ^
 
 # 盾の削除処理
 execute at @a if score @a[sort=nearest,limit=1] ht-id-r = @e[tag=sh,limit=1] ht-owner-r if score @a[sort=nearest,limit=1] ht-id-p = @e[tag=sh,limit=1] ht-owner-p if entity @e[tag=sh,sort=nearest,limit=1,distance=40..] run function hoko-tate:kill_shield
